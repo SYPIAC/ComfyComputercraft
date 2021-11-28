@@ -1,20 +1,18 @@
 local port = 1
-local keyZ, keyX     = 90, 88
-local keyArrowUp, keyArrowDown, keyArrowLeft, keyArrowRight = 265, 264, 263, 262
 local modem = peripheral.wrap("back")
 
 function processKey(key)
-  if(key == keyArrowUp) then
+  if(key == keys.up or key == keys.w) then
     modem.transmit(port,port, "quarry:forward")
-  elseif(key==keyArrowDown) then
+  elseif(key==keys.down or key == keys.s) then
     modem.transmit(port,port, "quarry:back")
-  elseif(key==keyArrowLeft) then
+  elseif(key==keys.left or key == keys.a) then
     modem.transmit(port,port, "quarry:left")
-  elseif(key==keyArrowRight) then
+  elseif(key==keys.right or key == keys.d) then
     modem.transmit(port,port, "quarry:right")
-  elseif(key==keyZ) then
+  elseif(key==keys.z) then
     modem.transmit(port,port, "quarry:down")
-  elseif(key==keyX) then
+  elseif(key==keys.x) then
     modem.transmit(port,prot, "quarry:up")
   end
 end
@@ -25,8 +23,8 @@ if not modem.isWireless then
   return
 end
 print("Quarry controller")
-print("Z to go up, X to go down!")
-print("arrow keys to move")
+print("X to go up, Z to go down!")
+print("arrow keys or WASD to move!")
 while(true) do
   local event, key, isHeld = os.pullEvent("key")
   -- do not repeat key event
