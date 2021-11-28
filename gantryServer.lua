@@ -13,7 +13,7 @@ function processKey(key)
   elseif(key==keys.z) then
     modem.transmit(port,port, "quarry:down")
   elseif(key==keys.x) then
-    modem.transmit(port,prot, "quarry:up")
+    modem.transmit(port,port, "quarry:up")
   end
 end
 
