@@ -28,13 +28,20 @@ function processCmd(cmd)
   -- turn on clutch to not break anything
   -- This probably leads to more breaking than not having it
   -- the program is completely disfunctional without this
-  if(cmd=="stop") then
-    reds(clutch, true)
-    return
-  end
+  
   
   reds(clutch, true)
   os.sleep(0.2)
+  
+  if(cmd=="stop") then
+    reds(side_gantryX, true) -- Move up to avoid getting stuck
+    reds(side_gantryZ, true)
+    os.sleep(0.1)
+    reds(gearshift, true)
+    os.sleep(5) -- Move up 5 seconds
+    reds(clutch, true)
+    return
+  end
   
   if(cmd=="up") then
     print("Moving "..cmd)
