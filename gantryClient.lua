@@ -28,6 +28,11 @@ function processCmd(cmd)
   -- turn on clutch to not break anything
   -- This probably leads to more breaking than not having it
   -- the program is completely disfunctional without this
+  if(cmd=="stop") then
+    reds(clutch, true)
+    return
+  end
+  
   reds(clutch, true)
   os.sleep(0.2)
   
