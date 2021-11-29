@@ -17,7 +17,6 @@ function processKey(key)
   elseif(key==keys.c) then
     modem.transmit(port,port, "quarry:stop")
   end
-  end
 end
 
 --main starts here
