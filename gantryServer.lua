@@ -14,6 +14,9 @@ function processKey(key)
     modem.transmit(port,port, "quarry:down")
   elseif(key==keys.x) then
     modem.transmit(port,port, "quarry:up")
+  elseif(key==keys.c) then
+    modem.transmit(port,port, "quarry:stop")
+  end
   end
 end
 
@@ -25,6 +28,7 @@ end
 print("Quarry controller")
 print("X to go up, Z to go down!")
 print("arrow keys or WASD to move!")
+print("C to stop (Clutch)")
 while(true) do
   local event, key, isHeld = os.pullEvent("key")
   -- do not repeat key event
