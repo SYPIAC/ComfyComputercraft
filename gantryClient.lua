@@ -34,6 +34,8 @@ function processCmd(cmd)
   os.sleep(0.2)
   
   if(cmd=="stop") then
+    reds(clutch, false) -- Allow short movement
+    os.sleep(0.2)
     reds(side_gantryX, true) -- Move up to avoid getting stuck
     reds(side_gantryZ, true)
     os.sleep(0.1)
