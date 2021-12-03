@@ -98,6 +98,7 @@ function ConsoleEvent() -- Enter computer to get console
 			mon.clear()
 			local floor = FloorPicker(false) -- Pick a free floor position
 			mon.clear()
+			mon.setCursorPos(1, 2)
 			print("Name: ")
 			local name = read()
 			floors[floor] = createButton(floor,color, name)
@@ -107,6 +108,7 @@ function ConsoleEvent() -- Enter computer to get console
 			mon.clear()
 			local floor = FloorPicker(true)  -- Pick an existing floor position
 			mon.clear()
+			mon.setCursorPos(1, 2)
 			print("Name: ")
 			local name = read()
 			floors[floor] = createButton(floor,color, name) -- Overwrite with new parameters
