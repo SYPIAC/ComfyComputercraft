@@ -132,9 +132,9 @@ mon.clear()
 local lastButtonHit = 0
 --list of buttons
 floors = {}
-floors[1] = createButton(1, colors.orange, "button 0")
-floors[2] = createButton(2, colors.cyan, "button 1")
-floors[3] = createButton(3, colors.red, "button 2")
+floors[1] = createButton(1, colors.orange, "Preset Floor 1")
+floors[2] = createButton(2, colors.cyan, "Preset Floor 2")
+floors[3] = createButton(3, colors.red, "Preset Floor 3")
 drawFloors(floors)
 
 while true do
