@@ -140,11 +140,9 @@ drawFloors(floors)
 while true do
   local eventData = {os.pullEvent()} -- Pull all events
   
-  
-  
   if eventData[1] == "monitor_touch" then
 	mon.setCursorPos(1, eventData[4])
-	mon.write(eventData[4])
+	mon.write("Nothing at "..tostring(eventData[4]))
 	MonitorEvent(eventData)
   elseif eventData[1] == "key" and eventData[2] == keys.c and not eventData[3] then -- Key C not holding down for opening console
 	mon.setCursorPos(1, 1)
