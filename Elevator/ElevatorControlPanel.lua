@@ -149,5 +149,9 @@ while true do
   elseif eventData[1] == "key" and eventData[2] == keys.c and not eventData[3] then -- Key C not holding down for opening console
 	mon.setCursorPos(1, 1)
 	ConsoleEvent()
+	-- Send updated floor plan to master
+  elseif eventData[1] == "modem_message" then
+	-- Update locally saved floorplan with received master floorplan
+	-- drawFloors(floors) to update monitor
   end
 end
