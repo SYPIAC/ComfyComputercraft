@@ -97,13 +97,19 @@ function ConsoleEvent() -- Enter computer to get console
 			local color = ColorPicker() -- Pick a color
 			mon.clear()
 			local floor = FloorPicker(false) -- Pick a free floor position
-			floors[floor] = createButton(floor,color, "New Floor")
+			mon.clear()
+			print("Name: ")
+			local name = read()
+			floors[floor] = createButton(floor,color, name)
 			
 		elseif operation == 2 then -- Edit floor
 			local color = ColorPicker() -- Pick a color
 			mon.clear()
 			local floor = FloorPicker(true)  -- Pick an existing floor position
-			floors[floor] = createButton(floor,color, "Edited Floor") -- Overwrite with new parameters
+			mon.clear()
+			print("Name: ")
+			local name = read()
+			floors[floor] = createButton(floor,color, name) -- Overwrite with new parameters
 			
 		elseif operation == 3 then -- Delete floor
 			local floor = FloorPicker(true) -- Pick an existing floor position
