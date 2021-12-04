@@ -1,3 +1,17 @@
+--have to do init here for it to be available for functions
+local port = 100
+local modem = peripheral.wrap("back")
+if not modem then
+  print("No wireless modem on back")
+  return
+end
+print("Running elevator client on port "..port)
+local label = os.getComputerLabel()
+if(not string.find(label, "floor")) then
+  print("Control PC label should start with 'floorX' where X is floor number")
+  return
+end
+
 --creates a 1 wide button and returns the window to control it
 function createButton(y,color, text)
   ret = window.create(term.current(), 1, y, 15, 1, true)
@@ -39,6 +53,7 @@ function MonitorEvent(event) -- Select floors etc.
 		floors[event[4]].text = ">>"..floors[event[4]].text
 		lastButtonHit = event[4]
 		drawFloors()
+    modem.transmit(port,port, "elevator:"..lastButtonHit)
 	else
 		return
     end
@@ -123,6 +138,10 @@ function ConsoleEvent() -- Enter computer to get console
 	end
 end
 
+--MAIN STARTS HERE
+--modem init
+--cut off just the floor number from label
+local floorLocation = tonumber(string.sub(label, 6,6)) 
 --use advanced monitor on top for rendering
 mon = peripheral.wrap("top")
 term.redirect(mon)
@@ -130,13 +149,17 @@ term.redirect(mon)
 mon.setTextScale(0.5)
 mon.clear()
 
+
 --last button pressed
 local lastButtonHit = 0
 --list of buttons
 floors = {}
-floors[1] = createButton(1, colors.orange, "Preset Floor 1")
-floors[2] = createButton(2, colors.cyan, "Preset Floor 2")
-floors[3] = createButton(3, colors.red, "Preset Floor 3")
+floors[1] = createButton(1, colors.green, "1:Surface")
+floors[2] = createButton(2, colors.cyan, "2:Manufacturing")
+floors[3] = createButton(3, colors.red, "3:Crushing?")
+floors[4] = createButton(4, colors.orange, "4:Smelting?")
+floors[5] = createButton(5, colors.purple, "5:Nether Portal")
+floors[6] = createButton(6, colors.gray, "6:Andesite Mine")
 drawFloors(floors)
 
 while true do
@@ -153,5 +176,10 @@ while true do
   elseif eventData[1] == "modem_message" then
 	-- Update locally saved floorplan with received master floorplan
 	-- drawFloors(floors) to update monitor
+  --someone pressed the call button
+  elseif eventData[1] == "redstone" then
+    if(redstone.getInput("top") == true) then
+      modem.transmit(port,port, "elevator:"..floorLocation)
+    end
   end
 end

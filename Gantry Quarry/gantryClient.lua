@@ -7,7 +7,7 @@ clutch = "left"
 drill_control = "bottom" -- Contact on top of drill confirming it's fully up
 
 local port = 1
-local modem = peripheral.wrap("top")
+local modem = peripheral.wrap(top)
 
 --helper function for redstone
 function reds(side, bool)
